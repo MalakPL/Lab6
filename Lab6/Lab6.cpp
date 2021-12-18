@@ -73,7 +73,7 @@ vector<wstring> Przedmioty = { L"Informatyka", L"Matematyka", L"Chemia", L"Języ
 
 auto Zadanie2() -> void
 {
-	const int StudnetCount = 2;
+	const int StudnetCount = 6;
 
 	wcout << "[Zadanie 2]" << endl;
 
