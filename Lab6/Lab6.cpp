@@ -64,9 +64,9 @@ struct Studnet
 {
 	wstring Name;
 	wstring LastName;
-	unsigned int Index;
+	unsigned int Index = 0;
 
-	float Ocena[4];
+	float Ocena[4] {0,0,0,0};
 };
 
 vector<wstring> Przedmioty = { L"Informatyka", L"Matematyka", L"Chemia", L"Język polski" };
@@ -113,6 +113,8 @@ auto Zadanie2() -> void
 		{
 			throw exception{ "Podany nr ucznia jest niepoprawny" };
 		}
+		--IDX;
+
 
 		int PIDX;
 		wcout << L"Podaj nr przedmiotu [0..." << Przedmioty.size() - 1 << L"] "; cin >> PIDX;
@@ -124,7 +126,8 @@ auto Zadanie2() -> void
 			throw exception{ "Podany nr przedmiotu jest niepoprawny" };
 		}
 
-		wcout << L"Uczeń: " << Vec[IDX - 1].Name << L", ocena z " << Przedmioty[PIDX] << L": " << Vec[IDX - 1].Ocena[PIDX] << endl;
+
+		wcout << L"Uczeń: " << Vec[IDX].Name << L", ocena z " << Przedmioty[PIDX] << L": " << Vec[IDX].Ocena[PIDX] << endl;
 	}
 }
 
@@ -183,13 +186,17 @@ auto Zadanie4() -> void
 	wcout << L"Podaj N: ";
 	cin >> N;
 
+	/*
+		Wykorzystywanie operatora + do łączenia tekstu tworzy nowy obiekt i nie jest to wydajne przy dużej ilości łączeń.
+		Lepszym rozwiązaniem będzie wykorzystanie stringstream, to taki odpowiednik StringBuildera z C#.
+	*/
 	wstringstream NewText;
 	for (int i = 0; i < N; ++i)
 	{
 		NewText << Text;
 	}
 
-	wcout << L"Wynik koncowy: " << NewText.str() << endl;
+	wcout << L"Wynik końcowy: " << NewText.str() << endl;
 }
 
 auto main() -> int
@@ -201,6 +208,7 @@ auto main() -> int
 		{
 			throw exception{ "Nie mozna ustawic kodowania UTF-8" };
 		}
+
 		Zadanie1();
 		Zadanie2();
 		Zadanie3();
